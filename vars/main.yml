@@ -1,0 +1,7 @@
+---
+oracle_java_arch:
+  x86_64: x64
+  i386: i586
+
+oracle_java_version_short: "{{ oracle_java_version.split('-')[0] }}"
+oracle_java_archive: "jdk-{{ oracle_java_version_short }}-linux-{{ oracle_java_arch[ansible_architecture] }}.tar.gz"

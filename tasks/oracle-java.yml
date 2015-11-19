@@ -1,0 +1,26 @@
+---
+- name: Install Dependencies
+  apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
+  with_items:
+    - wget
+    - java-package
+  become: yes
+
+- name: Download JDK
+  command: >
+    creates=/tmp/{{ oracle_java_archive }}
+    wget {{ oracle_java_base_url }}{{ oracle_java_version }}/{{ oracle_java_archive }}
+    --header "Cookie: oraclelicense=accept-securebackup-cookie"
+    --no-check-certificate --no-cookies -P /tmp
+
+- name: Make .deb
+  shell: >
+    yes | make-jpkg --full-name "Gunter Grodotzki" --email "gunter@grodotzki.co.za" /tmp/{{ oracle_java_archive }}
+  args:
+    chdir: /tmp
+
+- name: Install .deb
+  shell: dpkg -i /tmp/*jdk_{{ oracle_java_version_short }}*.deb
+  args:
+    chdir: /tmp
+  become: yes

@@ -1,0 +1,9 @@
+---
+- name: Check if Java is already installed.
+  shell: java -version
+  register: oracle_java_current
+  ignore_errors: yes
+
+- name: Install Java
+  include: oracle-java.yml
+  when: oracle_java_current.stderr.find('{{ oracle_java_version_short | replace("u", ".0_") }}') == -1

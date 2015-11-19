@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: Gunter Grodotzki
+  description: Installs Oracle Java (JDK).
+  company: weheartwebsites UG
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+    - utopic
+    - vivid
+  - name: Debian
+    versions:
+    - jessie
+    - wheezy
+  galaxy_tags:
+    - system
+    - development
