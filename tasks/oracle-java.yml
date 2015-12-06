@@ -9,7 +9,12 @@
     - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates multiverse'
     - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-security multiverse'
     - 'deb-src http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-security multiverse'
+  register: multiverse_installed
   become: yes
+
+- name: Update Cache
+  apt: update_cache=yes
+  when: multiverse_installed | changed
 
 - name: Install Dependencies
   apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
