@@ -1,8 +1,6 @@
 ---
 - name: Enabling multiverse on Ubuntu
-  apt_repository:
-    repo: "{{item}}"
-  update_cache: false
+  apt_repository: repo="{{item}}" state=present update_cache=no
   when: ansible_distribution == 'Ubuntu'
   with_items:
     - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} multiverse'
