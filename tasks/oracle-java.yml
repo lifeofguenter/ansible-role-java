@@ -22,6 +22,9 @@
   with_items:
     - wget
     - java-package
+    - libgl1-mesa-glx
+    - libxtst6
+    - libxxf86vm1
   become: yes
 
 - name: Download JDK
