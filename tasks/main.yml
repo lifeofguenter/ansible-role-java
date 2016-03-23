@@ -4,6 +4,14 @@
   register: oracle_java_current
   ignore_errors: yes
 
+- name: Include Ubuntu multiverse
+  include: apt-ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Include Debian contrib
+  include: apt-debian.yml
+  when: ansible_distribution == 'Debian'
+
 - name: Install Java
   include: oracle-java.yml
   when: oracle_java_current.stderr.find('{{ oracle_java_version_short | replace("u", ".0_") }}') == -1
