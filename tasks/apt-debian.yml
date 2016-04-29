@@ -6,3 +6,10 @@
     - 'deb-src http://ftp.de.debian.org/debian {{ansible_distribution_release}} main contrib'
   register: multiverse_installed
   become: yes
+
+- name: Install Debian Dependencies
+  apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
+  with_items:
+    - libgtk2.0-0
+    - libxslt1.1
+  become: yes
