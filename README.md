@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lifeofguenter/ansible-role-nodejs.svg?branch=master)](https://travis-ci.org/lifeofguenter/ansible-role-nodejs)
+[![Build Status](https://travis-ci.org/lifeofguenter/ansible-role-oracle-java.svg?branch=master)](https://travis-ci.org/lifeofguenter/ansible-role-oracle-java)
 
 # Ansible Role: Oracle Java
 
