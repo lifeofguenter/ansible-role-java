@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lifeofguenter/ansible-role-nodejs.svg?branch=master)](https://travis-ci.org/lifeofguenter/ansible-role-nodejs)
+
 # Ansible Role: Oracle Java
 
 An Ansible role that installs Oracle Java on Debian like systems.
