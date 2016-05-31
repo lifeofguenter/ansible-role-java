@@ -2,4 +2,6 @@
 
 oracle_java_base_url: http://download.oracle.com/otn-pub/java/jdk/
 
-oracle_java_version: 8u91-b14
+oracle_java_version: 8u92-b14
+
+oracle_java_sha256: 79a3f25e9b466cb9e969d1772ea38550de320c88e9119bf8aa11ce8547c39987
