@@ -21,6 +21,7 @@
     dest=/tmp/{{ oracle_java_archive }}
     headers='Cookie:oraclelicense=accept-securebackup-cookie'
     checksum=sha256:{{ oracle_java_sha256 }}
+    validate_certs=no
 
 - name: Make .deb
   shell: >
