@@ -1,10 +1,9 @@
 ---
 - name: Enabling contrib on Debian
-  apt_repository: repo="{{item}}" state=present update_cache=no
+  apt_repository: repo="{{item}}" state=present update_cache=yes
   with_items:
     - 'deb http://ftp.de.debian.org/debian {{ansible_distribution_release}} main contrib'
     - 'deb-src http://ftp.de.debian.org/debian {{ansible_distribution_release}} main contrib'
-  register: multiverse_installed
   become: yes
 
 - name: Install Debian Dependencies
