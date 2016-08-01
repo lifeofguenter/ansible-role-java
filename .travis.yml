@@ -12,6 +12,8 @@ addons:
     - python-pip
 
 install:
+  - which java
+
   # Install ansible
   - pip install ansible
 
