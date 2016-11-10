@@ -1,6 +1,6 @@
 ---
 
-- name: Install Dependencies
+- name: install dependencies
   apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
   with_items:
     - java-package
@@ -9,20 +9,25 @@
     - libxxf86vm1
   become: yes
 
-- name: Download JDK
-  get_url:
-    url="{{ oracle_java_base_url }}{{ oracle_java_version }}/{{ oracle_java_archive }}"
-    dest=/tmp/{{ oracle_java_archive }}
-    headers='Cookie:oraclelicense=accept-securebackup-cookie'
-    validate_certs=no
+#- name: Download JDK
+#  get_url:
+#    url="{{ oracle_java_base_url }}{{ oracle_java_version }}/{{ oracle_java_archive }}"
+#    dest=/tmp/{{ oracle_java_archive }}
+#    headers='Cookie:oraclelicense=accept-securebackup-cookie'
+#    validate_certs=no
 
-- name: Make .deb
+- name: download jdk (alternative)
+  get_url:
+    url: https://ftp.weheartwebsites.de/linux/java/jdk/{{ oracle_java_archive }}
+    dest: /tmp/{{ oracle_java_archive }}
+
+- name: make .deb
   shell: >
     yes | make-jpkg --full-name "Gunter Grodotzki" --email "gunter@grodotzki.co.za" /tmp/{{ oracle_java_archive }}
   args:
     chdir: /tmp
 
-- name: Install .deb
+- name: install .deb
   shell: dpkg -i /tmp/*jdk_{{ oracle_java_version_short }}*.deb
   args:
     chdir: /tmp
