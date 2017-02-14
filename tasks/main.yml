@@ -1,6 +1,6 @@
 ---
 - name: Check if Java is already installed.
-  shell: java -version
+  shell: "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
   register: oracle_java_current
   ignore_errors: yes
 

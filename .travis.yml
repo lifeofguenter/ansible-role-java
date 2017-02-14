@@ -28,7 +28,7 @@ script:
 
   - ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
-  - java -version
+  - "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
