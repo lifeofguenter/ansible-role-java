@@ -9,17 +9,17 @@
     - libxxf86vm1
   become: yes
 
-#- name: Download JDK
-#  get_url:
-#    url="{{ oracle_java_base_url }}{{ oracle_java_version }}/{{ oracle_java_archive }}"
-#    dest=/tmp/{{ oracle_java_archive }}
-#    headers='Cookie:oraclelicense=accept-securebackup-cookie'
-#    validate_certs=no
-
-- name: download jdk (alternative)
+- name: download jDK
   get_url:
-    url: https://ftp.weheartwebsites.de/linux/java/jdk/{{ oracle_java_archive }}
+    url: "{{ oracle_java_base_url }}{{ oracle_java_version }}/{{ oracle_java_archive }}"
     dest: /tmp/{{ oracle_java_archive }}
+    headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
+    validate_certs: no
+
+#- name: download jdk (alternative)
+#  get_url:
+#    url: https://ftp.weheartwebsites.de/linux/java/jdk/{{ oracle_java_archive }}
+#    dest: /tmp/{{ oracle_java_archive }}
 
 - name: make .deb
   shell: >
