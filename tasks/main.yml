@@ -1,17 +1,16 @@
 ---
-- name: Check if Java is already installed.
+
+- include: apt-ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- include: apt-debian.yml
+  when: ansible_distribution == 'Debian'
+
+- name: check java version
   shell: "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
   register: oracle_java_current
   ignore_errors: yes
 
-- name: Include Ubuntu multiverse
-  include: apt-ubuntu.yml
-  when: ansible_distribution == 'Ubuntu'
-
-- name: Include Debian contrib
-  include: apt-debian.yml
-  when: ansible_distribution == 'Debian'
-
-- name: Install Java
+- name: install java
   include: oracle-java.yml
-  when: oracle_java_current.stderr.find('{{ oracle_java_version_short | replace("u", ".0_") }}') == -1
+  when: not oracle_java_current.stderr | search(orable_java_version_string_match)

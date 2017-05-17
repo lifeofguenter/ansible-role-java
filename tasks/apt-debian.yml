@@ -1,13 +1,21 @@
 ---
-- name: Enabling contrib on Debian
-  apt_repository: repo="{{item}}" state=present update_cache=yes
+
+- name: enabling contrib on debian
+  apt_repository:
+    repo: "{{item}}"
+    state: present
+    update_cache: yes
   with_items:
     - 'deb http://ftp.de.debian.org/debian {{ansible_distribution_release}} main contrib'
     - 'deb-src http://ftp.de.debian.org/debian {{ansible_distribution_release}} main contrib'
   become: yes
 
-- name: Install Debian Dependencies
-  apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
+- name: install debian dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
   with_items:
     - libgtk2.0-0
     - libxslt1.1
