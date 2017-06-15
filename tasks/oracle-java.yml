@@ -9,6 +9,7 @@
   with_items:
     - ca-certificates
     - java-package
+    - java-common
     - libgl1-mesa-glx
     - libxtst6
     - libxxf86vm1
