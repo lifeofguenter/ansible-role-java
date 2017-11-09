@@ -19,6 +19,6 @@
 
 # unfortunately no way to run error-free by only ignoring browser-plugin
 - name: set oracle-jdk back as default
-  command: update-java-alternatives --set {{ oracle_jname }}
+  command: update-java-alternatives --set "{{ oracle_jname }}"
   become: yes
   ignore_errors: true
