@@ -14,6 +14,9 @@
   shell: basename "$(dpkg -L oracle-java8-jdk | grep -e 'lib/jvm/[^.][^/]\+$')"
   register: oracle_jname
 
+- debug:
+    var: oracle_jname
+
 # unfortunately no way to run error-free by only ignoring browser-plugin
 - name: set oracle-jdk back as default
   command: update-java-alternatives --set {{ oracle_jname }}
