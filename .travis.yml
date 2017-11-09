@@ -35,7 +35,5 @@ script:
 
   - "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
 
-  - ls -lh /usr/lib/jvm/
-
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

@@ -1,10 +1,6 @@
 ---
 
-- import_tasks: apt-ubuntu.yml
-  when: ansible_distribution == 'Ubuntu'
-
-- import_tasks: apt-debian.yml
-  when: ansible_distribution == 'Debian'
+- import_tasks: apt/{{ ansible_distribution | lower }}.yml
 
 - name: check java version
   shell: "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
@@ -14,10 +10,12 @@
 - import_tasks: oracle-java.yml
   when: not oracle_java_current.stderr | search(orable_java_version_string_match)
 
-- include_tasks: extras/{{ ansible_distribution | lower }}.yml
+- name: get jname
+  shell: basename $(dpkg -L oracle-java8-jdk | grep -e 'lib/jvm/[^.][^/]\+$')
+  register: oracle_jname
 
 # unfortunately no way to run error-free by only ignoring browser-plugin
 - name: set oracle-jdk back as default
-  command: update-java-alternatives --set {{ oraclejdk_path }}
+  command: update-java-alternatives --set {{ oracle_jname }}
   become: yes
   ignore_errors: true

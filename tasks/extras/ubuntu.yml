@@ -1,4 +1,0 @@
----
-
-- set_fact:
-    oraclejdk_path: oracle-java8-jdk-amd64
