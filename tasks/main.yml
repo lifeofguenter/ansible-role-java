@@ -1,9 +1,9 @@
 ---
 
-- include: apt-ubuntu.yml
+- import_tasks: apt-ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
 
-- include: apt-debian.yml
+- import_tasks: apt-debian.yml
   when: ansible_distribution == 'Debian'
 
 - name: check java version
@@ -11,6 +11,13 @@
   register: oracle_java_current
   ignore_errors: yes
 
-- name: install java
-  include: oracle-java.yml
+- import_tasks: oracle-java.yml
   when: not oracle_java_current.stderr | search(orable_java_version_string_match)
+
+- include_tasks: extras/{{ ansible_distribution | lower }}.yml
+
+# unfortunately no way to run error-free by only ignoring browser-plugin
+- name: set oracle-jdk back as default
+  command: update-java-alternatives --set {{ oraclejdk_path }}
+  become: yes
+  ignore_errors: true

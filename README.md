@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/lifeofguenter/ansible-role-oracle-java.svg?branch=master)](https://travis-ci.org/lifeofguenter/ansible-role-oracle-java)
 
-# Ansible Role: Oracle Java
+# lifeofguenter.oracle-java
 
-An Ansible role that installs Oracle Java on Debian like systems.
+An Ansible role that installs Oracle Java8 on Debian-like systems.
 
 ## Requirements
 
@@ -12,7 +12,9 @@ none
 
 Available variables are listed below, along with default values:
 
-    oracle_java_version: 8u66-b17
+```yaml
+oracle_java_version: 8u152-b16
+```
 
 ## Dependencies
 
@@ -20,10 +22,16 @@ none
 
 ## Example Playbook
 
-    - hosts: webservers
-      roles:
-        - { role: lifeofguenter.oracle-java }
+```yaml
+- hosts: webservers
+  roles:
+    - { role: lifeofguenter.oracle-java }
+```
 
 ## License
 
-MIT
+Licensed under the MIT License. See the [LICENSE file](LICENSE) for details.
+
+## Author Information
+
+[Gunter Grodotzki](https://lifeofguenter.de)
