@@ -1,6 +1,6 @@
 ---
 
-- import_tasks: apt/{{ ansible_distribution | lower }}.yml
+- include_tasks: apt/{{ ansible_distribution | lower }}.yml
 
 - name: check java version
   shell: "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
@@ -11,7 +11,7 @@
   when: not oracle_java_current.stderr | search(orable_java_version_string_match)
 
 - name: get jname
-  shell: basename $(dpkg -L oracle-java8-jdk | grep -e 'lib/jvm/[^.][^/]\+$')
+  shell: basename "$(dpkg -L oracle-java8-jdk | grep -e 'lib/jvm/[^.][^/]\+$')"
   register: oracle_jname
 
 # unfortunately no way to run error-free by only ignoring browser-plugin
