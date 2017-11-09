@@ -31,7 +31,7 @@ install:
 script:
   - ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
-  - ansible-playbook tests/test.yml -i tests/inventory --connection=local -vvv
+  - ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
   - "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
 
