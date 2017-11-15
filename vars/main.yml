@@ -1,3 +1,5 @@
 ---
 
 oracle_java_download_url: https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}/oracle-java8-jdk_{{ oracle_java_version }}_amd64.deb
+
+orable_java_version_string_match: "{{ oracle_java_version | replace(\"u\", \".0_\") }}"
