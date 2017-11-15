@@ -1,11 +1,5 @@
 ---
 
-oracle_java_arch:
-  x86_64: x64
-  i386: i586
+oracle_java_download_url: https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}/oracle-java8-jdk_{{ oracle_java_version }}_amd64.deb
 
-oracle_java_version_short: "{{ oracle_java_version.split('-')[0] }}"
-
-oracle_java_archive: "jdk-{{ oracle_java_version_short }}-linux-{{ oracle_java_arch[ansible_architecture] }}.tar.gz"
-
-orable_java_version_string_match: "{{ oracle_java_version_short | replace(\"u\", \".0_\") }}"
+orable_java_version_string_match: "{{ oracle_java_version | replace(\"u\", \".0_\") }}"

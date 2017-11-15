@@ -1,6 +1,6 @@
 ---
 
-- include_tasks: apt/{{ ansible_distribution | lower }}.yml
+- include_tasks: apt/{{ ansible_distribution | lower }}-{{ ansible_distribution_release | lower }}.yml
 
 - name: check java version
   shell: "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
