@@ -46,5 +46,5 @@
   ignore_errors: true
 
 - name: force apt
-  command: apt-get -f install
+  command: apt-get -yqf install
   become: yes
