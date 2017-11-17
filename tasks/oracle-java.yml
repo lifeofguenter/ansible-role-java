@@ -34,7 +34,17 @@
     - libxxf86vm1
   become: yes
 
+# the next steps are kinda hacky because ansible per apt-module would resolve the dependencies wrongly..
+- name: fetch deb
+  get_url:
+    url: "{{ oracle_java_download_url }}"
+    dest: /tmp
+
 - name: install oracle-java
-  apt:
-    deb: "{{ oracle_java_download_url }}"
+  command: dpkg -i /tmp/{{ oracle_java_deb }}
+  become: yes
+  ignore_errors: true
+
+- name: force apt
+  command: apt-get -f install
   become: yes
