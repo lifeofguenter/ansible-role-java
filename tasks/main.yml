@@ -8,8 +8,6 @@
 - import_tasks: oracle-java.yml
   when: not oracle_java_current.stderr | search(orable_java_version_string_match)
 
-- include_tasks: apt/{{ ansible_distribution | lower }}-{{ ansible_distribution_release | lower }}.yml
-
 - name: get jname
   shell: basename "$(dpkg -L oracle-java8-jdk | grep -e 'lib/jvm/[^.][^/]\+$')"
   register: oracle_jname
