@@ -79,4 +79,5 @@ ansible-playbook \
   --connection="${CONNECTION}" \
   tests/test.yml
 
-"$(dpkg -L oracle-java${ORACLE_JAVA_VERSION:0:1}-jdk | grep -e 'bin/java$' | tail -n1) -version"
+# "test"
+"$(dpkg -L oracle-java${ORACLE_JAVA_VERSION:0:1}-jdk | grep -e 'bin/java$' | tail -n1)" -version
