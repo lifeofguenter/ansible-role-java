@@ -5,6 +5,10 @@ python: "2.7"
 sudo: required
 dist: trusty
 
+env:
+  - ORACLE_JAVA_VERSION=
+  - ORACLE_JAVA_VERSION=7u80
+
 # Install ansible
 addons:
   apt:
@@ -29,11 +33,7 @@ install:
   - printf '[defaults]\nroles_path=../' > ansible.cfg
 
 script:
-  - ansible-playbook tests/test.yml -i tests/inventory --connection=local
-
-  - ansible-playbook tests/test.yml -i tests/inventory --connection=local
-
-  - "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
+  - ./test.sh
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
