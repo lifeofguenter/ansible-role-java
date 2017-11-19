@@ -1,15 +1,15 @@
 ---
 
 - name: check java version
-  shell: "$(dpkg -L oracle-java8-jdk | grep -e 'bin/java$' | tail -n1) -version"
+  shell: "$(dpkg -L oracle-java{{ oracle_java_version_major }}-jdk | grep -e 'bin/java$' | tail -n1) -version"
   register: oracle_java_current
   ignore_errors: yes
 
-- import_tasks: oracle-java.yml
+- import_tasks: install.yml
   when: not oracle_java_current.stderr | search(orable_java_version_string_match)
 
 - name: get jname
-  shell: basename "$(dpkg -L oracle-java8-jdk | grep -e 'lib/jvm/[^.][^/]\+$')"
+  shell: basename "$(dpkg -L oracle-java{{ oracle_java_version_major }}-jdk | grep -e 'lib/jvm/[^.][^/]\+$')"
   register: oracle_jname
 
 # unfortunately no way to run error-free by only ignoring browser-plugin

@@ -46,5 +46,11 @@
   ignore_errors: true
 
 - name: force apt
-  command: apt-get -yqf install
+  command: apt-get -y -q -f install
+  become: yes
+
+- name: cleanup
+  file:
+    state: absent
+    path: /tmp/{{ oracle_java_deb }}
   become: yes
