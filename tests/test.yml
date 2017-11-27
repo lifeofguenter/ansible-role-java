@@ -3,4 +3,4 @@
 - hosts: all
 
   roles:
-    - { role: "{{ role_root | default('../ansible-role-wildfly') }}" }
+    - { role: "{{ role_root | default('../ansible-role-oracle-java') }}" }
