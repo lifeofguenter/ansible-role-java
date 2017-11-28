@@ -1,6 +1,6 @@
 ---
 
-- hosts: localhost
-  remote_user: root
+- hosts: all
+
   roles:
-    - ansible-role-oracle-java
+    - { role: "{{ role_root | default('../ansible-role-oracle-java') }}" }
