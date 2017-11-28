@@ -22,9 +22,12 @@
   command: mvn --version
   register: maven_current_version
   ignore_errors: yes
-  when: maven_version is defined
+  when:
+    - maven_version is defined
+    - maven_version != ''
 
 - import_tasks: maven.yml
   when:
     - maven_version is defined
+    - maven_version != ''
     - maven_current_version | failed or not maven_current_version.stdout | search(maven_version_string_match)
