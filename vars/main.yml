@@ -7,3 +7,9 @@ oracle_java_deb: oracle-java{{ oracle_java_version_major }}-jdk_{{ oracle_java_v
 oracle_java_download_url: https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}/{{ oracle_java_deb }}
 
 orable_java_version_string_match: "{{ oracle_java_version | replace(\"u\", \".0_\") }}"
+
+maven_version_major: "{{ maven_version.split('.')[0] }}"
+
+maven_download_url: http://www-eu.apache.org/dist/maven/maven-{{ maven_version_major }}/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.zip
+
+maven_version_string_match: Apache Maven {{ maven_version }}

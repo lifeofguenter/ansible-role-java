@@ -6,8 +6,9 @@ sudo: required
 dist: trusty
 
 env:
-  - ORACLE_JAVA_VERSION=
-  - ORACLE_JAVA_VERSION=7u80
+  matrix:
+    - ORACLE_JAVA_VERSION= MAVEN_VERSION=3.5.2
+    - ORACLE_JAVA_VERSION=7u80
 
 # Install ansible
 addons:

@@ -17,3 +17,13 @@
   command: update-java-alternatives --set "{{ oracle_jname.stdout }}"
   become: yes
   ignore_errors: true
+
+- name: check maven version
+  comman: mvn --version
+  register: maven_current_version
+  when: maven_version is defined
+
+- import_tasks: maven.yml
+  when:
+    - maven_version is defined
+    - maven_current_version | failed or not maven_current_version.stdout | search(maven_version_string_match)
