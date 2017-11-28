@@ -80,9 +80,14 @@ ansible-playbook \
   tests/test.yml
 
 # "test"
-"$(dpkg -L oracle-java${ORACLE_JAVA_VERSION:0:1}-jdk | grep -e 'bin/java$' | tail -n1)" -version
-java -version
+if [[ "${CONNECTION}" == "local" ]]; then
+  echo ''
+  "$(dpkg -L oracle-java${ORACLE_JAVA_VERSION:0:1}-jdk | grep -e 'bin/java$' | tail -n1)" -version
+  echo ''
+  java -version
+fi
 
 if [[ ! -z "${MAVEN_VERSION}" ]]; then
+  echo ''
   mvn --version
 fi
