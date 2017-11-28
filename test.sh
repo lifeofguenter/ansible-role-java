@@ -67,7 +67,7 @@ consolelog "running role as playbook #1"
 ansible-playbook \
   --inventory="${TARGET_HOST}," \
   --user="${CONNECT_USER}" \
-  --extra-vars="role_root=${role_root} oracle_java_version=${ORACLE_JAVA_VERSION}" \
+  --extra-vars="role_root=${role_root} oracle_java_version=${ORACLE_JAVA_VERSION} maven_version=${MAVEN_VERSION}" \
   --connection="${CONNECTION}" \
   tests/test.yml
 
@@ -75,9 +75,19 @@ consolelog "running role as playbook #2"
 ansible-playbook \
   --inventory="${TARGET_HOST}," \
   --user="${CONNECT_USER}" \
-  --extra-vars="role_root=${role_root} oracle_java_version=${ORACLE_JAVA_VERSION}" \
+  --extra-vars="role_root=${role_root} oracle_java_version=${ORACLE_JAVA_VERSION} maven_version=${MAVEN_VERSION}" \
   --connection="${CONNECTION}" \
   tests/test.yml
 
 # "test"
-"$(dpkg -L oracle-java${ORACLE_JAVA_VERSION:0:1}-jdk | grep -e 'bin/java$' | tail -n1)" -version
+if [[ "${CONNECTION}" == "local" ]]; then
+  echo ''
+  "$(dpkg -L oracle-java${ORACLE_JAVA_VERSION:0:1}-jdk | grep -e 'bin/java$' | tail -n1)" -version
+  echo ''
+  java -version
+fi
+
+if [[ ! -z "${MAVEN_VERSION}" ]]; then
+  echo ''
+  mvn --version
+fi

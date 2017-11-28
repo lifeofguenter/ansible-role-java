@@ -1,0 +1,15 @@
+---
+
+- name: fetch maven
+  unarchive:
+    src: "{{ maven_download_url }}"
+    dest: /opt
+    remote_src: yes
+  become: yes
+
+- name: create symlink
+  file:
+    src: /opt/apache-maven-{{ maven_version }}/bin/mvn
+    dest: /usr/local/bin/mvn
+    state: link
+  become: yes
