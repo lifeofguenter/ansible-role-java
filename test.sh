@@ -82,4 +82,7 @@ ansible-playbook \
 # "test"
 "$(dpkg -L oracle-java${ORACLE_JAVA_VERSION:0:1}-jdk | grep -e 'bin/java$' | tail -n1)" -version
 java -version
-mvn --version
+
+if [[ ! -z "${MAVEN_VERSION}" ]]; then
+  mvn --version
+fi

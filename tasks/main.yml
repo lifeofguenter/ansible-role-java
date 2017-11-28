@@ -19,7 +19,7 @@
   ignore_errors: true
 
 - name: check maven version
-  comman: mvn --version
+  command: mvn --version
   register: maven_current_version
   when: maven_version is defined
 
