@@ -16,11 +16,12 @@
 - name: set oracle-jdk back as default
   command: update-java-alternatives --set "{{ oracle_jname.stdout }}"
   become: yes
-  ignore_errors: true
+  ignore_errors: yes
 
 - name: check maven version
   command: mvn --version
   register: maven_current_version
+  ignore_errors: yes
   when: maven_version is defined
 
 - import_tasks: maven.yml
