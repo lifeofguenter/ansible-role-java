@@ -90,5 +90,6 @@ fi
 if [[ ! -z "${MAVEN_VERSION}" ]]; then
   echo ''
   mvn --version
+  /opt/apache-maven/bin/mvn --version
   ls -lh /opt/apache-maven*
 fi
