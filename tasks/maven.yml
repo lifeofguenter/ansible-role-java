@@ -7,9 +7,17 @@
     remote_src: yes
   become: yes
 
-- name: create symlink
+- name: create mvn symlink
   file:
     src: /opt/apache-maven-{{ maven_version }}/bin/mvn
     dest: /usr/local/bin/mvn
     state: link
+  become: yes
+
+- name: create maven symlink
+  file:
+    src: /opt/apache-maven-{{ maven_version }}
+    dest: /opt/apache-maven
+    state: link
+    force: yes
   become: yes

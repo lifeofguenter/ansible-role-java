@@ -19,7 +19,7 @@
   ignore_errors: yes
 
 - name: check maven version
-  command: mvn --version
+  command: /opt/apache-maven/bin/mvn --version
   register: maven_current_version
   ignore_errors: yes
   when:
