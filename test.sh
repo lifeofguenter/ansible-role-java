@@ -85,22 +85,22 @@ if [[ "${CONNECTION}" == "local" ]]; then
   "$(dpkg -L oracle-java${ORACLE_JAVA_VERSION:0:1}-jdk | grep -e 'bin/java$' | tail -n1)" -version
   consolelog "java version rel:"
   java -version
-fi
 
-if [[ ! -z "${MAVEN_VERSION}" ]]; then
-  consolelog "maven version abs:"
-  /opt/apache-maven/bin/mvn --version
-  consolelog "maven version rel:"
-  mvn --version
-  consolelog "maven versions:"
-  ls -lh /opt/apache-maven*
-fi
+  if [[ ! -z "${MAVEN_VERSION}" ]]; then
+    consolelog "maven version abs:"
+    /opt/apache-maven/bin/mvn --version
+    consolelog "maven version rel:"
+    mvn --version
+    consolelog "maven versions:"
+    ls -lh /opt/apache-maven*
+  fi
 
-if [[ ! -z "${GRADLE_VERSION}" ]]; then
-  consolelog "gradle version abs:"
-  /opt/gradle/bin/gradle --version
-  consolelog "gradle version rel:"
-  gradle --version
-  consolelog "gradle versions:"
-  ls -lh /opt/gradle*
+  if [[ ! -z "${GRADLE_VERSION}" ]]; then
+    consolelog "gradle version abs:"
+    /opt/gradle/bin/gradle --version
+    consolelog "gradle version rel:"
+    gradle --version
+    consolelog "gradle versions:"
+    ls -lh /opt/gradle*
+  fi
 fi
