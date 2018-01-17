@@ -13,3 +13,7 @@ maven_version_major: "{{ maven_version.split('.')[0] }}"
 maven_download_url: http://www.mirrorservice.org/sites/ftp.apache.org/maven/maven-{{ maven_version_major }}/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.zip
 
 maven_version_string_match: Apache Maven {{ maven_version }}
+
+gradle_download_url: https://services.gradle.org/distributions/gradle-{{ gradle_version }}-bin.zip
+
+gradle_version_string_match: Gradle {{ gradle_version }}

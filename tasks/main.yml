@@ -31,3 +31,17 @@
     - maven_version is defined
     - maven_version != ''
     - maven_current_version | failed or not maven_current_version.stdout | search(maven_version_string_match)
+
+- name: check gradle version
+  command: /opt/gradle/bin/gradle --version
+  register: gradle_current_version
+  ignore_errors: yes
+  when:
+    - gradle_version is defined
+    - gradle_version != ''
+
+- import_tasks: gradle.yml
+  when:
+    - gradle_version is defined
+    - gradle_version != ''
+    - gradle_current_version | failed or not gradle_current_version.stdout | search(gradle_version_string_match)

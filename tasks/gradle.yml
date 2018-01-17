@@ -10,24 +10,24 @@
     - unzip
   become: yes
 
-- name: fetch maven
+- name: fetch gradle
   unarchive:
-    src: "{{ maven_download_url }}"
+    src: "{{ gradle_download_url }}"
     dest: /opt
     remote_src: yes
   become: yes
 
-- name: create mvn symlink
+- name: create gradle symlink
   file:
-    src: /opt/apache-maven-{{ maven_version }}/bin/mvn
-    dest: /usr/local/bin/mvn
+    src: /opt/gradle-{{ gradle_version }}/bin/gradle
+    dest: /usr/local/bin/gradle
     state: link
   become: yes
 
-- name: create vanity MAVEN_HOME
+- name: create vanity GRADLE_HOME
   file:
-    src: /opt/apache-maven-{{ maven_version }}
-    dest: /opt/apache-maven
+    src: /opt/gradle-{{ gradle_version }}
+    dest: /opt/gradle
     state: link
     force: yes
   become: yes
