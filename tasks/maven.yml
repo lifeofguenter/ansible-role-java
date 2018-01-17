@@ -14,7 +14,7 @@
     state: link
   become: yes
 
-- name: create maven symlink
+- name: create vanity MAVEN_HOME
   file:
     src: /opt/apache-maven-{{ maven_version }}
     dest: /opt/apache-maven

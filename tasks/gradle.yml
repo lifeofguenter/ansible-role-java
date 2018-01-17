@@ -1,0 +1,23 @@
+---
+
+- name: fetch gradle
+  unarchive:
+    src: "{{ gradle_download_url }}"
+    dest: /opt
+    remote_src: yes
+  become: yes
+
+- name: create gradle symlink
+  file:
+    src: /opt/gradle-{{ gradle_version }}/bin/gradle
+    dest: /usr/local/bin/gradle
+    state: link
+  become: yes
+
+- name: create vanity GRADLE_HOME
+  file:
+    src: /opt/gradle-{{ gradle_version }}
+    dest: /opt/gradle
+    state: link
+    force: yes
+  become: yes
