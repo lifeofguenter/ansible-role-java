@@ -30,7 +30,7 @@
   when:
     - maven_version is defined
     - maven_version != ''
-    - maven_current_version | failed or not maven_current_version.stdout | search(maven_version_string_match)
+    - maven_current_version is failed or not maven_current_version.stdout is search(maven_version_string_match)
 
 - name: check gradle version
   command: /opt/gradle/bin/gradle --version
@@ -44,4 +44,4 @@
   when:
     - gradle_version is defined
     - gradle_version != ''
-    - gradle_current_version | failed or not gradle_current_version.stdout | search(gradle_version_string_match)
+    - gradle_current_version is failed or not gradle_current_version.stdout is search(gradle_version_string_match)
