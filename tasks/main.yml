@@ -6,7 +6,7 @@
   ignore_errors: yes
 
 - import_tasks: install.yml
-  when: not oracle_java_current.stderr | search(oracle_java_version_string_match)
+  when: not oracle_java_current.stderr is search(oracle_java_version_string_match)
 
 - name: get jname
   shell: basename "$(dpkg -L oracle-java{{ oracle_java_version_major }}-jdk | grep -e 'lib/jvm/[^.][^/]\+$')"
@@ -30,7 +30,7 @@
   when:
     - maven_version is defined
     - maven_version != ''
-    - maven_current_version | failed or not maven_current_version.stdout | search(maven_version_string_match)
+    - maven_current_version is failed or not maven_current_version.stdout is search(maven_version_string_match)
 
 - name: check gradle version
   command: /opt/gradle/bin/gradle --version
@@ -44,4 +44,4 @@
   when:
     - gradle_version is defined
     - gradle_version != ''
-    - gradle_current_version | failed or not gradle_current_version.stdout | search(gradle_version_string_match)
+    - gradle_current_version is failed or not gradle_current_version.stdout is search(gradle_version_string_match)
