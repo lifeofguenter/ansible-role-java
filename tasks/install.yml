@@ -47,7 +47,8 @@
 
 - name: force apt
   command: apt-get -y -q -f install
-  warn: no
+  args:
+    warn: no
   become: yes
 
 - name: cleanup
