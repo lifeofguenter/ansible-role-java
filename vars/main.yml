@@ -1,13 +1,5 @@
 ---
 
-oracle_java_version_major: "{{ oracle_java_version[:1] }}"
-
-oracle_java_deb: oracle-java{{ oracle_java_version_major }}-jdk_{{ oracle_java_version }}_amd64.deb
-
-oracle_java_download_url: https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}/{{ oracle_java_deb }}
-
-oracle_java_version_string_match: "{{ oracle_java_version | replace(\"u\", \".0_\") }}"
-
 maven_version_major: "{{ maven_version.split('.')[0] }}"
 
 maven_download_url: http://www.mirrorservice.org/sites/ftp.apache.org/maven/maven-{{ maven_version_major }}/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.zip

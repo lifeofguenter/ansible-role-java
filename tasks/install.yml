@@ -1,58 +1,22 @@
 ---
 
+- name: add apt-key
+  apt_key:
+    id: AD26AC18
+    url: https://files.9jkh.co.za/AD26AC18.asc
+    state: present
+  become: yes
+
+- name: add apt-repo
+  apt_repository:
+    repo: deb https://dl.bintray.com/9jkh/jdk {{ ansible_distribution_release | lower }} main
+    state: present
+  become: yes
+
 - name: install dependencies
   apt:
-    name: "{{ item }}"
+    name: "{{ oracle_java_package }}"
     state: present
     update_cache: yes
     cache_valid_time: 3600
-  with_items:
-    - ca-certificates
-    - java-common
-    - libasound2
-    - libatk1.0-0
-    - libc6
-    - libcairo2
-    - libfontconfig1
-    - libfreetype6
-    - libgcc1
-    - libgdk-pixbuf2.0-0
-    - libgl1-mesa-glx
-    - libglib2.0-0
-    - libgtk2.0-0
-    - libpango-1.0-0
-    - libpangocairo-1.0-0
-    - libpangoft2-1.0-0
-    - libstdc++6
-    - libx11-6
-    - libxext6
-    - libxi6
-    - libxml2
-    - libxrender1
-    - libxslt1.1
-    - libxtst6
-    - libxxf86vm1
-  become: yes
-
-# the next steps are kinda hacky because ansible per apt-module would resolve the dependencies wrongly..
-- name: fetch deb
-  get_url:
-    url: "{{ oracle_java_download_url }}"
-    dest: /tmp
-
-- name: install oracle-java
-  command: dpkg -i /tmp/{{ oracle_java_deb }}
-  become: yes
-  ignore_errors: true
-
-- name: force apt
-  command: apt-get -y -q -f install
-  args:
-    warn: no
-  become: yes
-
-- name: cleanup
-  file:
-    state: absent
-    path: /tmp/{{ oracle_java_deb }}
   become: yes
