@@ -1,5 +1,7 @@
 ---
 
+- import_tasks: install.yml
+
 - name: get jname
   shell: basename "$(dpkg -L {{ oracle_java_package }} | grep -e 'lib/jvm/[^.][^/]\+$')"
   register: oracle_jname
