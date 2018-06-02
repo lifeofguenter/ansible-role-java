@@ -13,7 +13,7 @@ none
 Available variables are listed below, along with default values:
 
 ```yaml
-oracle_java_version: 8u162
+oracle_java_package: oracle-java8-jdk
 
 maven_version: ''
 
