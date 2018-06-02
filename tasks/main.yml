@@ -1,7 +1,7 @@
 ---
 
 - name: get jname
-  shell: basename "$(dpkg -L oracle-java{{ oracle_java_version_major }}-jdk | grep -e 'lib/jvm/[^.][^/]\+$')"
+  shell: basename "$(dpkg -L {{ oracle_java_package }} | grep -e 'lib/jvm/[^.][^/]\+$')"
   register: oracle_jname
 
 # unfortunately no way to run error-free by only ignoring browser-plugin
