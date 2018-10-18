@@ -4,6 +4,8 @@
 
 An Ansible role that installs Oracle Java8 on Debian-like systems.
 
+_Please note: this is meant for legacy systems and will never go beyond JDK8 or debian jessie/stretch or ubuntu trusty/xenial. Please rather install openjdk in future._
+
 ## Requirements
 
 none
