@@ -3,7 +3,8 @@
 - import_tasks: install.yml
 
 - name: get jname
-  shell: basename "$(dpkg -L {{ oracle_java_package }} | grep -e 'lib/jvm/[^.][^/]\+$')"
+  ansible.builtin.shell: set -eo pipefail; basename "$(dpkg -L {{ oracle_java_package }} | grep -e 'lib/jvm/[^.][^/]\+$')"
+  changed_when: no
   register: oracle_jname
 
 # unfortunately no way to run error-free by only ignoring browser-plugin
@@ -11,14 +12,16 @@
   command: update-java-alternatives --set "{{ oracle_jname.stdout }}"
   become: yes
   ignore_errors: yes
+  changed_when: no
 
 - name: check maven version
   command: /opt/apache-maven/bin/mvn --version
   register: maven_current_version
   ignore_errors: yes
+  changed_when: no
   when:
     - maven_version is defined
-    - maven_version != ''
+    - maven_version | length > 0
 
 - import_tasks: maven.yml
   when:
@@ -30,12 +33,13 @@
   command: /opt/gradle/bin/gradle --version
   register: gradle_current_version
   ignore_errors: yes
+  changed_when: no
   when:
     - gradle_version is defined
-    - gradle_version != ''
+    - gradle_version | length > 0
 
 - import_tasks: gradle.yml
   when:
     - gradle_version is defined
-    - gradle_version != ''
+    - gradle_version | length > 0
     - gradle_current_version is failed or not gradle_current_version.stdout is search(gradle_version_string_match)

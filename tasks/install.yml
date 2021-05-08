@@ -2,20 +2,20 @@
 
 - name: add apt-key
   apt_key:
-    id: AD26AC18
-    url: https://files.9jkh.co.za/AD26AC18.asc
+    id: 6DC3636DAE534049C8B94623A122542AB04F24E3
+    url: https://apt.corretto.aws/corretto.key
     state: present
   become: yes
 
 - name: add apt-repo
   apt_repository:
-    repo: deb https://dl.bintray.com/9jkh/jdk {{ ansible_distribution_release | lower }} main
+    repo: deb https://apt.corretto.aws stable main
     state: present
   become: yes
 
 - name: install dependencies
   apt:
-    name: "{{ oracle_java_package }}"
+    name: '{{ oracle_java_package }}'
     state: present
     update_cache: yes
     cache_valid_time: 3600

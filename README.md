@@ -1,10 +1,8 @@
-[![Build Status](https://travis-ci.org/lifeofguenter/ansible-role-oracle-java.svg?branch=master)](https://travis-ci.org/lifeofguenter/ansible-role-oracle-java)
-
 # lifeofguenter.oracle-java
 
-An Ansible role that installs Oracle Java8 on Debian-like systems.
+[![Build Status](https://travis-com.org/lifeofguenter/ansible-role-java8.svg?branch=master)](https://travis-ci.com/lifeofguenter/ansible-role-java8)
 
-_Please note: this is meant for legacy systems and will never go beyond JDK8 or debian jessie/stretch or ubuntu trusty/xenial. Please rather install openjdk in future._
+An Ansible role that installs Java8 ([Corretto](https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/what-is-corretto-8.html)) on Debian-like systems.
 
 ## Requirements
 
@@ -15,8 +13,6 @@ none
 Available variables are listed below, along with default values:
 
 ```yaml
-oracle_java_package: oracle-java8-jdk
-
 maven_version: ''
 
 gradle_version: ''
