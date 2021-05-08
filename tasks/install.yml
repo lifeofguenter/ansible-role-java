@@ -23,6 +23,8 @@
 
 - name: get jname
   shell: set -eo pipefail; dirname "$(dirname "$(dpkg -L '{{ oracle_java_package }}' | grep -e bin/java$ | grep -v jre | head -n1)")"
+  args:
+    executable: /bin/bash
   changed_when: no
   register: oracle_jname
 
