@@ -2,18 +2,6 @@
 
 - import_tasks: install.yml
 
-- name: get jname
-  shell: dirname "$(dirname "$(dpkg -L '{{ oracle_java_package }}' | grep -e bin/java$ | grep -v jre | head -n1)")"
-  changed_when: no
-  register: oracle_jname
-
-# unfortunately no way to run error-free by only ignoring browser-plugin
-- name: set oracle-jdk back as default
-  command: update-java-alternatives --set "{{ oracle_jname.stdout }}"
-  become: yes
-  ignore_errors: yes
-  changed_when: no
-
 - name: check maven version
   command: /opt/apache-maven/bin/mvn --version
   register: maven_current_version

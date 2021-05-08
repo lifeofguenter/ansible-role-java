@@ -1,4 +1,4 @@
-# lifeofguenter.oracle-java
+# lifeofguenter.java8
 
 [![Build Status](https://travis-com.org/lifeofguenter/ansible-role-java8.svg?branch=master)](https://travis-ci.com/lifeofguenter/ansible-role-java8)
 
@@ -27,7 +27,7 @@ none
 ```yaml
 - hosts: webservers
   roles:
-    - { role: lifeofguenter.oracle-java }
+    - { role: lifeofguenter.java8 }
 ```
 
 ## License

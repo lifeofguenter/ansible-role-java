@@ -86,7 +86,9 @@ if [[ "${CONNECTION}" == "local" ]]; then
   consolelog "java version rel:"
   java -version
 
-  if [[ ! -z "${MAVEN_VERSION}" ]]; then
+  update-java-alternatives -l
+
+  if [[ -n "${MAVEN_VERSION}" ]]; then
     consolelog "maven version abs:"
     /opt/apache-maven/bin/mvn --version
     consolelog "maven version rel:"
@@ -95,7 +97,7 @@ if [[ "${CONNECTION}" == "local" ]]; then
     ls -lh /opt/apache-maven*
   fi
 
-  if [[ ! -z "${GRADLE_VERSION}" ]]; then
+  if [[ -n "${GRADLE_VERSION}" ]]; then
     consolelog "gradle version abs:"
     /opt/gradle/bin/gradle --version
     consolelog "gradle version rel:"
