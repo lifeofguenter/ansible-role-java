@@ -86,7 +86,7 @@ if [[ "${CONNECTION}" == "local" ]]; then
   consolelog "java version rel:"
   java -version
 
-  update-java-alternatives -l
+  sudo update-java-alternatives -l
 
   if [[ -n "${MAVEN_VERSION}" ]]; then
     consolelog "maven version abs:"
