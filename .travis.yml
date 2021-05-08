@@ -4,8 +4,7 @@ dist: focal
 sudo: required
 
 env:
-  - MAVEN_VERSION=3.8.1
-  - GRADLE_VERSION=7.0
+  - ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3 MAVEN_VERSION=3.8.1 GRADLE_VERSION=7.0
 
 # Install ansible
 addons:
