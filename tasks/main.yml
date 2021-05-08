@@ -3,7 +3,7 @@
 - import_tasks: install.yml
 
 - name: get jname
-  ansible.builtin.shell: dirname "$(dirname "$(dpkg -L '{{ oracle_java_package }}' | grep -e bin/java$ | grep -v jre | head -n1)")"
+  shell: dirname "$(dirname "$(dpkg -L '{{ oracle_java_package }}' | grep -e bin/java$ | grep -v jre | head -n1)")"
   changed_when: no
   register: oracle_jname
 
