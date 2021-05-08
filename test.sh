@@ -57,6 +57,10 @@ if [[ -z "${CONNECTION}" ]]; then
   CONNECTION="smart"
 fi
 
+if [[ -z "${ORACLE_JAVA_PACKAGE}" ]]; then
+  ORACLE_JAVA_PACKAGE="$(trim "$(grep -F oracle_java_package: defaults/main.yml | cut -d: -f2)")"
+fi
+
 role_root="$(pwd)"
 
 consolelog "running role as playbook #1"
