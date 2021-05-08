@@ -1,6 +1,7 @@
 ---
 
 galaxy_info:
+  role_name: java8
   author: Gunter Grodotzki
   description: Installs Oracle Java (JDK).
   license: MIT
