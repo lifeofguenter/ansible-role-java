@@ -1,9 +1,9 @@
 ---
 
 galaxy_info:
-  role_name: java8
+  role_name: java
   author: Gunter Grodotzki
-  description: Installs Oracle Java (JDK).
+  description: Installs Amazon Corretto Java (JDK).
   license: MIT
   min_ansible_version: '2.10'
   platforms:

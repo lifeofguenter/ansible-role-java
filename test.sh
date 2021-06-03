@@ -34,7 +34,7 @@ while getopts "hi:u:V:" opt; do
       CONNECT_USER="${OPTARG}"
       ;;
     V )
-      ORACLE_JAVA_PACKAGE="${OPTARG}"
+      JAVA_PACKAGE="${OPTARG}"
       ;;
     '?' )
       usage >&2
@@ -57,8 +57,9 @@ if [[ -z "${CONNECTION}" ]]; then
   CONNECTION="smart"
 fi
 
-if [[ -z "${ORACLE_JAVA_PACKAGE}" ]]; then
-  ORACLE_JAVA_PACKAGE="$(trim "$(grep -F oracle_java_package: defaults/main.yml | cut -d: -f2)")"
+if [[ -z "${JAVA_PACKAGE}" ]]; then
+  JAVA_PACKAGE="$(trim "$(grep -F default_java_package: defaults/main.yml | cut -d: -f2)")"
+  consolelog "JAVA_PACKAGE=${JAVA_PACKAGE}"
 fi
 
 role_root="$(pwd)"
@@ -82,7 +83,7 @@ ansible-playbook \
 # "test"
 if [[ "${CONNECTION}" == "local" ]]; then
   consolelog "java version abs:"
-  "$(dpkg -L "${ORACLE_JAVA_PACKAGE}" | grep -e 'bin/java$' | tail -n1)" -version
+  "$(dpkg -L "${JAVA_PACKAGE}" | grep -e 'bin/java$' | tail -n1)" -version
   consolelog "java version rel:"
   java -version
 
