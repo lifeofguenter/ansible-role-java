@@ -15,22 +15,25 @@
 
 - name: install java
   apt:
-    name: '{{ oracle_java_package }}'
+    name:
+      - '{{ default_java_package }}'
+      - java-11-amazon-corretto-jdk
+      - java-16-amazon-corretto-jdk
     state: present
     update_cache: yes
     cache_valid_time: 3600
   become: yes
 
 - name: get jname
-  shell: set -eo pipefail; dirname "$(dirname "$(dpkg -L '{{ oracle_java_package }}' | grep -e bin/java$ | grep -v jre | head -n1)")"
+  shell: set -eo pipefail; dirname "$(dirname "$(dpkg -L '{{ default_java_package }}' | grep -e bin/java$ | grep -v jre | head -n1)")"
   args:
     executable: /bin/bash
   changed_when: no
-  register: oracle_jname
+  register: jname
 
 # unfortunately no way to run error-free by only ignoring browser-plugin
-- name: set oracle-jdk back as default
-  command: update-java-alternatives --set "{{ oracle_jname.stdout }}"
+- name: set default java
+  command: update-java-alternatives --set "{{ jname.stdout }}"
   become: yes
   ignore_errors: yes
   changed_when: no

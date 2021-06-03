@@ -1,8 +1,9 @@
-# lifeofguenter.java8
+# lifeofguenter.java
 
-[![Build Status](https://travis-com.org/lifeofguenter/ansible-role-java8.svg?branch=master)](https://travis-ci.com/lifeofguenter/ansible-role-java8)
+[![Build Status](https://travis-ci.com/lifeofguenter/ansible-role-java.svg?branch=main)](https://travis-ci.com/lifeofguenter/ansible-role-java)
 
-An Ansible role that installs Java8 ([Corretto](https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/what-is-corretto-8.html)) on Debian-like systems.
+An Ansible role that installs [Java Corretto](https://docs.aws.amazon.com/corretto/index.html) 8, 11 (LTS) and 16 on
+Debian-like systems.
 
 ## Requirements
 
@@ -13,6 +14,8 @@ none
 Available variables are listed below, along with default values:
 
 ```yaml
+default_java_package: java-1.8.0-amazon-corretto-jdk
+
 maven_version: ''
 
 gradle_version: ''
@@ -27,7 +30,7 @@ none
 ```yaml
 - hosts: webservers
   roles:
-    - { role: lifeofguenter.java8 }
+    - { role: lifeofguenter.java }
 ```
 
 ## License
