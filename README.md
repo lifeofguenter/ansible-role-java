@@ -1,6 +1,6 @@
 # lifeofguenter.java
 
-[![Build Status](https://travis-ci.com/lifeofguenter/ansible-role-java8.svg?branch=main)](https://travis-ci.com/lifeofguenter/ansible-role-java8)
+[![Build Status](https://travis-ci.com/lifeofguenter/ansible-role-java.svg?branch=main)](https://travis-ci.com/lifeofguenter/ansible-role-java)
 
 An Ansible role that installs [Java Corretto](https://docs.aws.amazon.com/corretto/index.html) 8, 11 (LTS) and 16 on
 Debian-like systems.

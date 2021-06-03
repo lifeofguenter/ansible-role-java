@@ -86,6 +86,7 @@ if [[ "${CONNECTION}" == "local" ]]; then
   "$(dpkg -L "${JAVA_PACKAGE}" | grep -e 'bin/java$' | tail -n1)" -version
   consolelog "java version rel:"
   java -version
+  update-java-alternatives -l
 
   if [[ -n "${MAVEN_VERSION}" ]]; then
     consolelog "maven version abs:"
