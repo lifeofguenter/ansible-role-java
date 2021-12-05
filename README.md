@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.com/lifeofguenter/ansible-role-java.svg?branch=main)](https://travis-ci.com/lifeofguenter/ansible-role-java)
 
-An Ansible role that installs [Java Corretto](https://docs.aws.amazon.com/corretto/index.html) 8, 11 (LTS) and 16 on
-Debian-like systems.
+An Ansible role that installs [Java Corretto](https://docs.aws.amazon.com/corretto/index.html) 8, 11 and 17 - e.g. LTS
+versions on Debian-like systems.
 
 ## Requirements
 
