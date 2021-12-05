@@ -17,14 +17,6 @@
   ignore_errors: yes
   register: fetch_maven
 
-- name: fetch maven (alt)
-  unarchive:
-    src: "{{ maven_download_url_alt }}"
-    dest: /opt
-    remote_src: yes
-  become: yes
-  when: fetch_maven is failed
-
 - name: create mvn symlink
   file:
     src: /opt/apache-maven-{{ maven_version }}/bin/mvn
