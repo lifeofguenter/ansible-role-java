@@ -16,10 +16,6 @@ jobs:
       - run: sudo apt update
       - run: sudo apt install tree
 
-      # prep
-      - run: sudo useradd -d /home/mcs -m -s /bin/bash mcs
-      - run: sudo -u mcs mkdir -p /home/mcs/.ansible/tmp
-
       - run: pip3 install ansible ansible-lint
 
       - run: ansible --version
