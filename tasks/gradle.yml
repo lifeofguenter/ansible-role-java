@@ -1,31 +1,31 @@
 ---
 
-- name: install dependencies
-  apt:
+- name: Install dependencies
+  ansible.builtin.apt:
     name: unzip
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
-  become: yes
+  become: true
 
-- name: fetch gradle
-  unarchive:
+- name: Fetch gradle
+  ansible.builtin.unarchive:
     src: "{{ gradle_download_url }}"
     dest: /opt
-    remote_src: yes
-  become: yes
+    remote_src: true
+  become: true
 
-- name: create gradle symlink
-  file:
+- name: Create gradle symlink
+  ansible.builtin.file:
     src: /opt/gradle-{{ gradle_version }}/bin/gradle
     dest: /usr/local/bin/gradle
     state: link
-  become: yes
+  become: true
 
-- name: create vanity GRADLE_HOME
-  file:
+- name: Create vanity GRADLE_HOME
+  ansible.builtin.file:
     src: /opt/gradle-{{ gradle_version }}
     dest: /opt/gradle
     state: link
-    force: yes
-  become: yes
+    force: true
+  become: true

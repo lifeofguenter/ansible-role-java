@@ -1,33 +1,33 @@
 ---
 
-- name: install dependencies
-  apt:
+- name: Install dependencies
+  ansible.builtin.apt:
     name: unzip
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
-  become: yes
+  become: true
 
-- name: fetch maven
-  unarchive:
+- name: Fetch maven
+  ansible.builtin.unarchive:
     src: "{{ maven_download_url }}"
     dest: /opt
-    remote_src: yes
-  become: yes
-  ignore_errors: yes
+    remote_src: true
+  become: true
+  ignore_errors: true
   register: fetch_maven
 
-- name: create mvn symlink
-  file:
+- name: Create mvn symlink
+  ansible.builtin.file:
     src: /opt/apache-maven-{{ maven_version }}/bin/mvn
     dest: /usr/local/bin/mvn
     state: link
-  become: yes
+  become: true
 
-- name: create vanity MAVEN_HOME
-  file:
+- name: Create vanity MAVEN_HOME
+  ansible.builtin.file:
     src: /opt/apache-maven-{{ maven_version }}
     dest: /opt/apache-maven
     state: link
-    force: yes
-  become: yes
+    force: true
+  become: true
