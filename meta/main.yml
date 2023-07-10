@@ -2,20 +2,23 @@
 
 galaxy_info:
   role_name: java
-  author: Gunter Grodotzki
+  namespace: lifeofguenter
+  author: Günter Grodotzki
   description: Installs Amazon Corretto Java (JDK).
   license: MIT
   min_ansible_version: '2.10'
   platforms:
-    - name: Ubuntu
-      versions:
-        - focal
-        - bionic
-        - xenial
     - name: Debian
       versions:
+        - bookworm
+        - bullseye
         - buster
         - stretch
+    - name: Ubuntu
+      versions:
+        - jammy
+        - focal
+        - bionic
   galaxy_tags:
     - system
     - development

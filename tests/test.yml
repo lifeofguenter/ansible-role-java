@@ -1,6 +1,12 @@
 ---
 
-- hosts: all
+- hosts: localhost
 
-  roles:
-    - { role: "{{ role_root | default('../ansible-role-java') }}" }
+  vars:
+    maven_version: '3.9.3'
+    gradle_version: '8.2.1'
+
+  tasks:
+    - name: Import project role
+      ansible.builtin.import_role:
+        name: project
