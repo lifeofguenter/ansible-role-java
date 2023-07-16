@@ -16,6 +16,7 @@
 - name: Install java
   ansible.builtin.apt:
     name:
+      - ca-certificates-java
       - java-1.8.0-amazon-corretto-jdk
       - java-11-amazon-corretto-jdk
       - java-17-amazon-corretto-jdk
